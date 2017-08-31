@@ -1,0 +1,6 @@
+
+git clone http://119.29.247.121/opt/git/hkbomc.git
+
+https://github.com/libabagit/helloworld.git
+//Ë¢ÐÂ
+ git push
