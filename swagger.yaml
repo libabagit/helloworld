@@ -1,0 +1,726 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: HKbomc
+tags:
+  - name: 资源管理
+    description: 关于资源管理的一切
+schemes:
+  - http
+paths:
+  /Configitem:
+    post:
+      tags:
+        - 资源管理
+      summary: 创建配置项
+      description: ''
+      operationId: addconfigitem
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: name
+          description: 名称
+          required: true
+          schema:
+            $ref: ''
+      responses:
+        '200':
+          description: 添加成功
+        '405':
+          description: 非法输入
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/Configitem/{name}':
+    put:
+      tags:
+        - 资源管理
+      summary: 修改配置项
+      description: ''
+      operationId: updateconfigitem
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: ID of pet to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - 资源管理
+      summary: 删除配置项
+      description: ''
+      operationId: deleteconfigitem
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          type: string
+        - name: name
+          in: path
+          description: Pet id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /ConfigItem:
+    get:
+      tags:
+        - 资源管理
+      summary: 查询配置项
+      description: Multiple status values can be provided with comma separated strings
+      operationId: findconfigitem
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: true
+          type: array
+          items:
+            type: string
+            enum:
+              - available
+              - pending
+              - sold
+            default: available
+          collectionFormat: multi
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/ConfigItem/{name}':
+    get:
+      tags:
+        - 资源管理
+      summary: 查询单个配置项
+      description: Returns a single pet
+      operationId: getconfigitemById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: ID of pet to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+  /CIInstance:
+    post:
+      tags:
+        - 资源管理
+      summary: 创建配置项实例
+      description: ''
+      operationId: addCIInstance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIInstance/{Rid}':
+    put:
+      tags:
+        - 资源管理
+      summary: 修改配置项实例
+      description: ''
+      operationId: updateCIInstance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: Rid
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - 资源管理
+      summary: 删除配置项实例
+      description: ''
+      operationId: deleteCIInstance
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          type: integer
+        - name: Rid
+          in: path
+          description: Pet id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /CIInStance:
+    post:
+      tags:
+        - 资源管理
+      summary: 查询配置项实例
+      description: ''
+      operationId: addCIInStance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIInStance/{Rid}':
+    get:
+      tags:
+        - 资源管理
+      summary: 查询单个配置项实例
+      description: Returns a single pet
+      operationId: getCIInstanceById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: Rid
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+  /CIRelation:
+    post:
+      tags:
+        - 资源管理
+      summary: 创建配置关系
+      description: ''
+      operationId: addCIRelation
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIRelation/{name}':
+    put:
+      tags:
+        - 资源管理
+      summary: 修改配置关系
+      description: ''
+      operationId: updateCIRelation
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: ID of pet to return
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - 资源管理
+      summary: 删除配置关系
+      description: ''
+      operationId: deleteCIRelation
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          type: string
+        - name: name
+          in: path
+          description: Pet id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /CIRelations:
+    get:
+      tags:
+        - 资源管理
+      summary: 查询配置关系
+      description: Multiple status values can be provided with comma separated strings
+      operationId: findCIRelation
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: true
+          type: array
+          items:
+            type: string
+            enum:
+              - available
+              - pending
+              - sold
+            default: available
+          collectionFormat: multi
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIRelations/{name}':
+    get:
+      tags:
+        - 资源管理
+      summary: 查询单个配置关系
+      description: Returns a single pet
+      operationId: getCIRelationsById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: name
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+  /CIRInstance:
+    post:
+      tags:
+        - 资源管理
+      summary: 创建配置关系实例
+      description: ''
+      operationId: addCIRInstance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIRInstance/{Rid}':
+    put:
+      tags:
+        - 资源管理
+      summary: 修改配置关系实例
+      description: ''
+      operationId: updateCIRInstance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: Rid
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - 资源管理
+      summary: 删除配置关系实例
+      description: ''
+      operationId: deleteCIRInstance
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          type: integer
+        - name: Rid
+          in: path
+          description: Pet id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /CIRInStance:
+    post:
+      tags:
+        - 资源管理
+      summary: 查询配置关系实例
+      description: ''
+      operationId: getCIRInStance
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/CIRInStance/{Rid}':
+    get:
+      tags:
+        - 资源管理
+      summary: 查询单个配置关系实例
+      description: Returns a single pet
+      operationId: getCIRInStanceById
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: Rid
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Order:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      petId:
+        type: integer
+        format: int64
+      quantity:
+        type: integer
+        format: int32
+      shipDate:
+        type: string
+        format: date-time
+      status:
+        type: string
+        description: Order Status
+        enum:
+          - placed
+          - approved
+          - delivered
+      complete:
+        type: boolean
+        default: false
+    xml:
+      name: Order
+  Category:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    xml:
+      name: Category
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      username:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      userStatus:
+        type: integer
+        format: int32
+        description: User Status
+    xml:
+      name: User
+  Tag:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    xml:
+      name: Tag
+  Pet:
+    type: object
+    required:
+      - name
+      - photoUrls
+    properties:
+      id:
+        type: integer
+        format: int64
+      category:
+        $ref: '#/definitions/Category'
+      name:
+        type: string
+        example: doggie
+      photoUrls:
+        type: array
+        xml:
+          name: photoUrl
+          wrapped: true
+        items:
+          type: string
+      tags:
+        type: array
+        xml:
+          name: tag
+          wrapped: true
+        items:
+          $ref: '#/definitions/Tag'
+      status:
+        type: string
+        description: pet status in the store
+        enum:
+          - available
+          - pending
+          - sold
+    xml:
+      name: Pet
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
